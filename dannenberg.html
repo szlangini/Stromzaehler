@@ -1,15 +1,42 @@
 <html>
 
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/styles.css" rel="stylesheet">
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+ <style>   p {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 15px;
+}
+     #myButton {
+         background-color: limegreen;
+         
+         
+     }
+    </style>
 </head>
 <body>
 
-    <div class="container">
+
     
-    <h1>Willkommen zu Dannenberg</h1>
-    
+        <div class="container">
+    <center>
+         <a href="index.html"> <img src="img/logo.png"  width="350px" style="margin-bottom: 0px"/> </a>
+        <hr>
+        
+    <h1>Willkommen zu ihrem Zähler
+        Herr Szlang</h1>
+        
+        <img src="img/dannenberg.jpg" width="200px" />
+        <p>Gerät:DA04328483</p>        
+        <p>Maximale Stromstärke:</p>
+        <p id="max">80A</p>
+        
+        <h2>Aktuelle Werte:</h2>
+        <p id="volt"></p>
+        <p id="ampere"></p>
+        
+       </center>
+    <hr>
     </div>
     
     <div class="container">
@@ -17,26 +44,153 @@
     <form>
       <div class="form-group">
 
-    <input type="text" class="form-control" placeholder="Kennung ...">
+    <input type="text" class="form-control" placeholder="Kennung ..." id="kennung" value="">
           
         </div>
       <div class="form-group">
 
-    <input type="text" class="form-control" placeholder="kWh...">
+    <input type="text" class="form-control" placeholder="kWh..." id="kWh" value="">
         </div>
-          
-      <div class="form-group">
+        </form>
+   
 
-    <button type="submit" class="btn btn-success">Abschicken</button>
-        </div>
-          </form>
+    <center>
+        <p id="myButton">Abschicken</p>
+        </center>
 
     
     
     </div>
+    <div class="container">
+    <table class="table table-striped" id="myTable">
+    <tr>
+        <th>Kennung</th>
+        <th>Verbrauch</th>
+        <th>Datum</th>
+    </tr>
+    </table>
     
+    
+    </div>
+    
+    <script type="text/javascript">
+         
+    // JavaScript here:
+        
+    var volt = document.getElementById("volt");  
+    var ampere = document.getElementById("ampere");
+    var max = parseInt(document.getElementById("max").innerHTML);        
+
+        
+    // Random Numbers are generated with Math.random()   
+        // 1. Volt between 220-240
+        
+    var xv = Math.random();
+        xv = xv*20;
+        xv = xv + 220
+        xv = xv.toFixed(1);
+
+        
+    var xa = Math.random();
+        xa = xa*max;
+        xa = xa+5;
+        xa = xa.toFixed(1);
+        
+        
+    volt.innerHTML = xv + "V";
+    ampere.innerHTML = xa + "A";
+        
+        
+//     Check if ampere > max
+    var amp = parseInt(document.getElementById("ampere").innerHTML);
+    
+    var max = parseInt(document.getElementById("max").innerHTML);        
+    if (amp>max){
+        
+    ampere.style.color = "red";
+    ampere.innerHTML = ampere.innerHTML + ": Achtung zu hoch!!";
+    
+    }else{
+        
+        
+    }
+    
+    // Formular
+    var myButton = document.getElementById("myButton");
+    myButton.onclick = function(){
+        
+    var kennung = document.getElementById("kennung").value;
+    var kWh = document.getElementById("kWh").value;
+   
+    if (kennung.length == 4 && kWh.length != 0) {
+        
+
+        
+        var table = document.getElementById("myTable");
+        var row = table.insertRow(1);
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+
+
+        
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd='0'+dd;
+        } 
+
+        if(mm<10) {
+            mm='0'+mm;
+        } 
+
+        today = mm+'/'+dd+'/'+yyyy;
+        
+        cell1.innerHTML = kennung;
+        cell2.innerHTML = kWh;
+        cell3.innerHTML = today;
+        
+        // Muss noch überprüfen, ob die ersten beiden buchstaben und die hinteren zahlen sind.
+    
+        //        https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
+        
+       
+        
+        
+        }
+    else{
+        
+    alert("Bitte geben Sie die Werte richtig ein.");    
+
+        
+    }
+        
+    }    
+    
+
+    
+    
+    </script>
     
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
 </body>
+    <footer> 
+    <hr style="background-color:#000000;height:1px;width:50%;
+text-align:center;">
+    <center>
+
+    
+   <a href="C:\Users\Gandolf\Desktop\rss.html" title="DTST: DAS KOLLEKTIV" style="color: black;" >
+       <img src="img/logo.png" width="50px" style:"margin-top: -30px"/> </a>
+        
+    
+    </center>
+
+</footer>
 </html>

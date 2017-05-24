@@ -7,6 +7,11 @@
     font-family: "Lucida Console", Monaco, monospace;
     font-size: 15px;
 }
+     #myButton {
+         background-color: limegreen;
+         
+         
+     }
     </style>
 </head>
 <body>
@@ -46,12 +51,12 @@
 
     <input type="text" class="form-control" placeholder="kWh..." id="kWh" value="">
         </div>
-          
-      <div class="form-group">
+        </form>
+   
 
-    <button type="submit" class="btn btn-success" id="myButton">Abschicken</button>
-        </div>
-    </form>
+    <center>
+        <p id="myButton">Abschicken</p>
+        </center>
 
     
     
@@ -119,20 +124,16 @@
    
     if (kennung.length == 4 && kWh.length != 0) {
         
-        // Muss noch überprüfen, ob die ersten beiden buchstaben und die hinteren zahlen sind.
-    
-        //        https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
+
         
         var table = document.getElementById("myTable");
-        var row = table.insertRow(0);
+        var row = table.insertRow(1);
 
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
 
-        cell1.innerHTML = "NEW CELL1";
-        cell2.innerHTML = "NEW CELL2";
-        cell3.innerHTML = "NEW CELL3";
+
         
         var today = new Date();
         var dd = today.getDate();
@@ -149,6 +150,13 @@
 
         today = mm+'/'+dd+'/'+yyyy;
         
+        cell1.innerHTML = kennung;
+        cell2.innerHTML = kWh;
+        cell3.innerHTML = today;
+        
+        // Muss noch überprüfen, ob die ersten beiden buchstaben und die hinteren zahlen sind.
+    
+        //        https://stackoverflow.com/questions/1531093/how-do-i-get-the-current-date-in-javascript
         
        
         
